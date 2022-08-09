@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-find_package(Java REQUIRED)
+# find_package(Java REQUIRED)
 
 set(CODEC_SCHEMA ${ARCHIVE_CODEC_SCHEMA_DIR}/aeron-archive-codecs.xml)
 set(GENERATED_CODECS

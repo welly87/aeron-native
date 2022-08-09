@@ -14,7 +14,7 @@
 # limitations under the License.
 #
 
-find_package(Java REQUIRED)
+# find_package(Java REQUIRED)
 
 add_definitions(-DAERON_ALL_JAR="${AERON_ALL_JAR}")
 add_definitions(-DJAVA_EXECUTABLE="${Java_JAVA_EXECUTABLE}")
