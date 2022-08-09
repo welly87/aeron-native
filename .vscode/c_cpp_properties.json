@@ -1,0 +1,25 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${workspaceFolder}/aeron-client/src/main/c",
+                "${workspaceFolder}/aeron-client/src/main/cpp",
+                "${workspaceFolder}/aeron-client/src/main/cpp_wrapper",
+                "${workspaceFolder}/aeron-client/src/test/c",
+                "${workspaceFolder}/aeron-client/src/test/cpp",
+                "${workspaceFolder}/aeron-client/src/test/cpp_wrapper",
+                "${workspaceFolder}/aeron-driver/src/main/c",
+                "${workspaceFolder}/aeron-driver/src/test/c"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c17",
+            "cppStandard": "c++14",
+            "intelliSenseMode": "linux-clang-arm64",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}

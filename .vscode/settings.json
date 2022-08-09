@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "aeron_client_conductor.h": "c",
+        "aeron_error.h": "c",
+        "aeron_spsc_rb.h": "c"
+    }
+}
