@@ -26,9 +26,11 @@ if (${CMAKE_CURRENT_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_BINARY_DIR})
         "and run CMake from there. You may need to remove CMakeCache.txt.")
 endif ()
 
-if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
-    set(STANDALONE_BUILD TRUE)
-endif ()
+# if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+#     set(STANDALONE_BUILD TRUE)
+# endif ()
+
+set(STANDALONE_BUILD TRUE)
 
 option(BUILD_AERON_DRIVER "Build Aeron driver" ON)
 option(BUILD_AERON_ARCHIVE_API "Build Aeron Archive API" OFF)
@@ -129,7 +131,7 @@ if (UNIX)
 
     if (AERON_ENABLE_NONSTANDARD_OPTIMIZATIONS)
         add_compile_options($<$<CONFIG:Release>:-Ofast>)
-        add_compile_options(-mcpu=neoverse-512tvb)
+        add_compile_options(-mcpu=neoverse-512tvb -Os)
     endif ()
 endif ()
 
