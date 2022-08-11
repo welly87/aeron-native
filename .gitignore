@@ -107,3 +107,4 @@ aeron-samples/scripts/cluster/node*/
 *.out
 *.app
 >>>>>>> 374a655da (Initial commit)
+*.evoke.db
