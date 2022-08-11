@@ -10,7 +10,7 @@ Synchronous designs are fundamentally limited as you cannot pipeline. "Smart Bat
 - [ ] check atomic is there works with `objdump -d aeronmd | grep -i 'cas\|casp\|swp\|ldadd\|stadd\|ldclr\|stclr\|ldeor\|steor\|ldset\|stset\|ldsmax\|stsmax\|ldsmin\|stsmin\|ldumax\|stumax\|ldumin\|stumin' | wc -l`
 - [ ] check load store exclusive `objdump -d aeronmd | grep -i 'ldxr\|ldaxr\|stxr\|stlxr' | wc -l`
 - [ ] check GCC optims `nm aeronmd | grep __aarch64_have_lse_atomics | wc -l`
-- [ ] optimization that use ARMv8.4-a and Neoverse-V1 (sve, rng, bf16, int8, crypto)
+- [ ] optimization that use `ARMv8.4-a` and Neoverse-V1 (`sve, rng, bf16, int8, crypto`)
 - [ ] read the [perfrunbook](https://github.com/aws/aws-graviton-getting-started/blob/main/perfrunbook/optimization_recommendation.md)
 
 
