@@ -32,8 +32,11 @@ set(CMAKE_EXTRA_INCLUDE_FILES)
 
 function(aeron_driver_test name file)
     add_executable(${name} ${file} ${TEST_HEADERS})
-    add_dependencies(${name} gmock)
-    target_link_libraries(${name} aeron_driver gmock_main ${CMAKE_THREAD_LIBS_INIT} ${AERON_LIB_WINSOCK_LIBS})
+
+    find_package(GTest CONFIG REQUIRED)
+
+    # add_dependencies(${name} gmock)
+    target_link_libraries(${name} aeron_driver gmock_main ${CMAKE_THREAD_LIBS_INIT} ${AERON_LIB_WINSOCK_LIBS} GTest::gmock GTest::gtest GTest::gmock_main GTest::gtest_main)
     target_compile_definitions(${name} PUBLIC "_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING")
     if (STRUCT_MMSGHDR_TYPE_EXISTS)
         target_compile_definitions(${name} PUBLIC -DHAVE_STRUCT_MMSGHDR)

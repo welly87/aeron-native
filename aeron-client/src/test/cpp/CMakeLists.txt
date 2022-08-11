@@ -29,7 +29,8 @@ target_include_directories(aeron_client_test
     PUBLIC ${AERON_CLIENT_TEST_PATH})
 target_link_libraries(aeron_client_test aeron_client gmock)
 target_compile_definitions(aeron_client_test PUBLIC "_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING")
-add_dependencies(aeron_client_test gmock)
+
+# add_dependencies(aeron_client_test gmock)
 
 if (MSVC AND ${CMAKE_VERSION} VERSION_LESS "3.13.0")
     target_compile_definitions(aeron_client_test PUBLIC "MSVC_FILE_IS_LOWER_CASE")
@@ -37,8 +38,14 @@ endif ()
 
 function(aeron_client_test name file)
     add_executable(${name} ${file})
-    add_dependencies(${name} gmock)
-    target_link_libraries(${name} aeron_client aeron_driver aeron_client_test gmock_main ${CMAKE_THREAD_LIBS_INIT})
+    
+    # add_dependencies(${name} gmock)
+
+    find_package(GTest CONFIG REQUIRED)
+
+    target_link_libraries(${name} aeron_client aeron_driver aeron_client_test gmock_main ${CMAKE_THREAD_LIBS_INIT} 
+        GTest::gmock GTest::gtest GTest::gmock_main GTest::gtest_main)
+        
     target_compile_definitions(${name} PUBLIC "_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING")
     add_test(NAME ${name} COMMAND ${name})
 endfunction()

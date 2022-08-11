@@ -14,6 +14,8 @@
 # limitations under the License.
 #
 
+find_package(GTest CONFIG REQUIRED)
+
 if (MSVC AND "${CMAKE_SYSTEM_NAME}" MATCHES "Windows")
     set(AERON_LIB_WINSOCK_LIBS wsock32 ws2_32 Iphlpapi)
 endif ()
@@ -25,8 +27,11 @@ set(TEST_HEADERS
 
 function(aeron_c_client_test name file)
     add_executable(${name} ${file} ${TEST_HEADERS})
-    add_dependencies(${name} gmock)
-    target_link_libraries(${name} aeron gmock_main ${CMAKE_THREAD_LIBS_INIT} ${AERON_LIB_WINSOCK_LIBS})
+    # add_dependencies(${name} gmock)
+
+    find_package(GTest CONFIG REQUIRED)
+
+    target_link_libraries(${name} aeron gmock_main ${CMAKE_THREAD_LIBS_INIT} ${AERON_LIB_WINSOCK_LIBS} GTest::gmock GTest::gtest GTest::gmock_main GTest::gtest_main)
     target_compile_definitions(${name} PUBLIC "_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING")
     add_test(NAME ${name} COMMAND ${name})
 endfunction()

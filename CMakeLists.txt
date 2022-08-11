@@ -37,7 +37,7 @@ option(C_WARNINGS_AS_ERRORS "Enable warnings as errors for C" OFF)
 option(CXX_WARNINGS_AS_ERRORS "Enable warnings as errors for C++" OFF)
 option(SANITISE_BUILD "Enable sanitise options" OFF)
 option(COVERAGE_BUILD "Enable code coverage" OFF)
-option(AERON_TESTS "Enable tests" OFF)
+option(AERON_TESTS "Enable tests" ON)
 option(AERON_SYSTEM_TESTS "Enable system tests" OFF)
 option(AERON_SLOW_SYSTEM_TESTS "Enable slow system tests" OFF)
 option(AERON_BUILD_SAMPLES "Enable building the sample projects" ${STANDALONE_BUILD})
@@ -213,7 +213,7 @@ if (AERON_TESTS)
     set(AERON_C_CLIENT_TEST_PATH "${CMAKE_CURRENT_SOURCE_DIR}/aeron-client/src/test/c")
     set(AERON_CLIENT_WRAPPER_TEST_PATH "${CMAKE_CURRENT_SOURCE_DIR}/aeron-client/src/test/cpp_wrapper")
     set(AERON_ARCHIVE_TEST_PATH "${CMAKE_CURRENT_SOURCE_DIR}/aeron-archive/src/test/cpp")
-    set(AERON_SYSTEM_TEST_PATH "${CMAKE_CURRENT_SOURCE_DIR}/aeron-system-tests")
+    # set(AERON_SYSTEM_TEST_PATH "${CMAKE_CURRENT_SOURCE_DIR}/aeron-system-tests")
 endif ()
 
 if (AERON_BUILD_SAMPLES)
@@ -228,17 +228,17 @@ add_definitions(-D_FILE_OFFSET_BITS=64)
 ##########################################################
 # gmock usage
 
-if (AERON_TESTS)
-    set(INSTALL_GMOCK OFF CACHE INTERNAL "Install Googletest's GMock?")
-    set(INSTALL_GTEST OFF CACHE INTERNAL "Install Googletest's GTest?" )
+# if (AERON_TESTS)
+#     set(INSTALL_GMOCK OFF CACHE INTERNAL "Install Googletest's GMock?")
+#     set(INSTALL_GTEST OFF CACHE INTERNAL "Install Googletest's GTest?" )
 
-    FetchContent_Declare(
-        gmock
-        URL ${CMAKE_CURRENT_SOURCE_DIR}/cppbuild/googletest-release-1.11.0.zip
-        URL_MD5 52943a59cefce0ae0491d4d2412c120b)
+#     FetchContent_Declare(
+#         gmock
+#         URL ${CMAKE_CURRENT_SOURCE_DIR}/cppbuild/googletest-release-1.11.0.zip
+#         URL_MD5 52943a59cefce0ae0491d4d2412c120b)
 
-    FetchContent_MakeAvailable(gmock)
-endif ()
+#     FetchContent_MakeAvailable(gmock)
+# endif ()
 
 ##########################################################
 # HdrHistogram usage - use MD5 as means to identify snapshot
@@ -281,7 +281,7 @@ if (BUILD_AERON_DRIVER)
     add_subdirectory(${AERON_DRIVER_SOURCE_PATH})
     if (AERON_TESTS)
         add_subdirectory(${AERON_DRIVER_TEST_PATH})
-        add_subdirectory(${AERON_SYSTEM_TEST_PATH})
+        # add_subdirectory(${AERON_SYSTEM_TEST_PATH})
     endif ()
 endif (BUILD_AERON_DRIVER)
 

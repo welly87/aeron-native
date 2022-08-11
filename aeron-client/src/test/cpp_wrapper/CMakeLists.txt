@@ -24,7 +24,10 @@ endif ()
 
 function(aeron_client_native_test name file)
     add_executable(${name} ${file} ${TEST_HEADERS})
-    add_dependencies(${name} gmock)
+    # add_dependencies(${name} gmock)
+
+    find_package(GTest CONFIG REQUIRED)
+
     target_link_libraries(${name} aeron_client aeron_driver gmock_main ${CMAKE_THREAD_LIBS_INIT})
     target_compile_definitions(${name} PUBLIC "_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING")
     add_test(NAME ${name} COMMAND ${name})
@@ -33,8 +36,10 @@ endfunction()
 function(aeron_client_wrapper_test name file)
     set(wrapper_name "${name}W")
     add_executable(${wrapper_name} ${file} ${TEST_HEADERS})
-    add_dependencies(${wrapper_name} gmock)
-    target_link_libraries(${wrapper_name} aeron_client_wrapper aeron_driver gmock_main ${CMAKE_THREAD_LIBS_INIT})
+    
+    find_package(GTest CONFIG REQUIRED)
+
+    target_link_libraries(${wrapper_name} aeron_client_wrapper aeron_driver gmock_main ${CMAKE_THREAD_LIBS_INIT} GTest::gmock GTest::gtest GTest::gmock_main GTest::gtest_main)
     target_compile_definitions(${wrapper_name} PUBLIC "_SILENCE_TR1_NAMESPACE_DEPRECATION_WARNING")
     add_test(NAME ${wrapper_name} COMMAND ${wrapper_name})
 endfunction()
